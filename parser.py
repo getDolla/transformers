@@ -66,7 +66,7 @@ def parse_file( fname, points, transform, screen, color ):
 
         i += 1
 
-def helper( function, args, points, transform, screen ):
+def helper( function, args, points, transform, screen, color ):
     if (function == "line"):
         args = [int(x) for x in args]
         add_edge( points, args[0], args[1], args[2], args[3], args[4], args[5] )
@@ -99,4 +99,5 @@ def helper( function, args, points, transform, screen ):
         matrix_mult( m, transform)
 
     elif (function == "save"):
+        draw_lines( points, screen, color)
         save_extension(screen, args)

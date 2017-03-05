@@ -100,4 +100,4 @@ def helper( function, args, points, transform, screen, color ):
 
     elif (function == "save"):
         draw_lines( points, screen, color)
-        save_extension(screen, args)
+        save_extension(screen, args[0])

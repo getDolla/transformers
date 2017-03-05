@@ -40,31 +40,31 @@ See the file script for an example of the file format
 def parse_file( fname, points, transform, screen, color ):
     two_line_fxns = [ "line", "scale", "translate", "rotate", "yrotate", "zrotate", "save" ]
     one_line_fxns = [ "display", "apply", "ident" ]
+    f = open(fname, 'r').readlines()
 
-    with open(fname, 'r').readlines() as f:
-        i = 0
-        while (i < len(f)):
-            info_line = f[i].strip()
+    i = 0
+    while (i < len(f)):
+        info_line = f[i].strip()
 
-            if (info_line in two_line_fxns):
-                i += 1
-                function = info_line
-                args = f[i].strip().split(" ")
-                helper( function, args, points, transform, screen, color )
-
-            elif (info_line in one_line_fxns):
-                if (info_line == "display"):
-                    draw_lines( points, screen, color)
-                    display(screen)
-                elif (info_line == "apply"):
-                    matrix_mult( transform, points )
-                else:
-                    ident(transform)
-
-            elif (info_line == "quit"):
-                return
-
+        if (info_line in two_line_fxns):
             i += 1
+            function = info_line
+            args = f[i].strip().split(" ")
+            helper( function, args, points, transform, screen, color )
+
+        elif (info_line in one_line_fxns):
+            if (info_line == "display"):
+                draw_lines( points, screen, color)
+                display(screen)
+            elif (info_line == "apply"):
+                matrix_mult( transform, points )
+            else:
+                ident(transform)
+
+        elif (info_line == "quit"):
+            return
+
+        i += 1
 
 def helper( function, args, points, transform, screen ):
     if (function == "line"):
@@ -99,5 +99,4 @@ def helper( function, args, points, transform, screen ):
         matrix_mult( m, transform)
 
     elif (function == "save"):
-        draw_lines( points, screen, color)
-        save_extension(screen, args[0])
+        save_extension(screen, args)

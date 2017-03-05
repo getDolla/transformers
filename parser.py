@@ -5,7 +5,7 @@ from draw import *
 """
 Goes through the file named filename and performs all of the actions listed in that file.
 The file follows the following format:
-     Every command is a single character that takes up a line
+     Every command is a single word that takes up a line
      Any command that requires arguments must have those arguments in the second line.
      The commands are as follows:
          line: add a line to the edge matrix - 
@@ -38,4 +38,35 @@ The file follows the following format:
 See the file script for an example of the file format
 """
 def parse_file( fname, points, transform, screen, color ):
-    pass
+    two_line_fxns = [ "line", "scale", "translate", "rotate", "yrotate", "zrotate", "save" ]
+    one_line_fxns = [ "display", "apply", "ident" ]
+    
+    with open(fname, 'r').readlines() as f:
+        i = 0
+        while (i < len(f)):
+            info_line = f[i].strip()
+
+            if (info_line in two_line_fxns):
+                i += 1
+                function = info_line
+                args = f[i].strip().split(" ")
+                helper( function, args, points, transform, screen, color )
+
+            else if (info_line in two_line_fxns):
+                if (info_line == "display"):
+                    display(screen)
+                else if (info_line == "apply"):
+                    matrix_mult( transform, points )
+                else:
+                    ident(transform)
+
+            else if (info_line == "quit"):
+                return
+
+            i += 1
+
+def helper( function, args, points, transform, screen, color ):
+    if (function == "line"):
+        add_edge( points, 
+    else if (function == "save"):
+        save_extension(screen, args)

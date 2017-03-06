@@ -1,0 +1,41 @@
+ident
+line
+0 0 0 0 64 0
+line
+0 0 0 64 0 0
+line
+0 64 0 64 0 0
+line
+0 0 0 0 0 64
+line
+64 0 0 0 0 64
+line
+0 64 0 0 0 64
+display
+save
+img0.png
+scale
+2 2 2
+apply
+display
+save
+img1.png
+ident
+translate
+360 140 0
+apply
+display
+save
+img2.png
+ident
+rotate
+z 45
+rotate
+y 45
+rotate
+x 45
+apply
+display
+save
+img3.png
+quit

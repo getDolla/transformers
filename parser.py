@@ -14,18 +14,12 @@ The file follows the following format:
 	 scale: create a scale matrix,
 	    then multiply the transform matrix by the scale matrix -
 	    takes 3 arguments (sx, sy, sz)
-	 translate: create a translation matrix,
+	 move: create a translation matrix,
 	    then multiply the transform matrix by the translation matrix -
 	    takes 3 arguments (tx, ty, tz)
 	 rotate: create a rotation matrix,
 	    then multiply the transform matrix by the rotation matrix -
 	    takes 2 arguments (axis, theta) axis should be x, y or z
-	 yrotate: create an y-axis rotation matrix,
-	    then multiply the transform matrix by the rotation matrix -
-	    takes 1 argument (theta)
-	 zrotate: create an z-axis rotation matrix,
-	    then multiply the transform matrix by the rotation matrix -
-	    takes 1 argument (theta)
 	 apply: apply the current transformation matrix to the
 	    edge matrix
 	 display: draw the lines of the edge matrix to the screen
@@ -38,7 +32,7 @@ The file follows the following format:
 See the file script for an example of the file format
 """
 def parse_file( fname, points, transform, screen, color ):
-    two_line_fxns = [ "line", "scale", "translate", "rotate", "yrotate", "zrotate", "save" ]
+    two_line_fxns = [ "line", "scale", "move", "rotate", "save" ]
     one_line_fxns = [ "display", "apply", "ident" ]
     f = open(fname, 'r').readlines()
 
@@ -77,7 +71,7 @@ def helper( function, args, points, transform, screen, color ):
         m = make_scale(args[0], args[1], args[2])
         matrix_mult( m, transform)
 
-    elif (function == "translate"):
+    elif (function == "move"):
         args = [int(x) for x in args]
         m = make_translate( args[0], args[1], args[2] )
         matrix_mult( m, transform)

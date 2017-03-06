@@ -17,7 +17,7 @@ scale
 apply
 display
 ident
-translate
+move
 360 140 0
 apply
 display

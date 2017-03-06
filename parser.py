@@ -54,6 +54,7 @@ def parse_file( fname, points, transform, screen, color ):
 
         elif (info_line in one_line_fxns):
             if (info_line == "display"):
+		clear_screen( screen )
                 draw_lines( points, screen, color)
                 display(screen)
             elif (info_line == "apply"):
@@ -91,5 +92,6 @@ def helper( function, args, points, transform, screen, color ):
         matrix_mult( m, transform)
 
     elif (function == "save"):
+	clear_screen( screen )
         draw_lines( points, screen, color)
         save_extension(screen, args[0])

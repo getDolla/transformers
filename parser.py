@@ -90,14 +90,6 @@ def helper( function, args, points, transform, screen, color ):
             m = make_rotZ( int(args[1]) )
         matrix_mult( m, transform)
 
-    elif (function == "yrotate"):
-        m = make_rotY( int(args[0]) )
-        matrix_mult( m, transform)
-
-    elif (function == "zrotate"):
-        m = make_rotZ( int(args[0]) )
-        matrix_mult( m, transform)
-
     elif (function == "save"):
         draw_lines( points, screen, color)
         save_extension(screen, args[0])
